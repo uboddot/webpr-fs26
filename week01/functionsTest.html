@@ -3,34 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>Function Tests</title>
-    <style>
-      .bar {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .true,
-      .false {
-        padding-inline: 1em;
-        color: #fff6;
-      }
-      .true {
-        background-color: green;
-      }
-      .false {
-        background-color: red;
-      }
-    </style>
+      <link rel="stylesheet" href="../test.css">
+    <script src="../test.js"></script>
   </head>
   <body>
     <div class="bar"></div>
     <script>
-      function test(arg) {
-        const bar = document.getElementsByClassName("bar")[0];
-        const div = document.createElement("div");
-        div.textContent = String(arg);
-        div.classList.add(String(arg));
-        bar.append(div);
-      }
 
       function fun1() {
         return 1;

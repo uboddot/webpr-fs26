@@ -3,23 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Scope Tests</title>
+    <link rel="stylesheet" href="../test.css">
+    <script src="../test.js"></script>
 </head>
 <body>
+    <div class="bar"></div>
     <script>
 
-        const test = x => document.writeln( String(x));
-
-        let x = 0;
-        function foo() {
-            let x = 1;
-            document.writeln(String(x));
-        }
-        foo();
-        document.writeln(String(x));
-
+        // let x = 0;
+        //     (() => {
+        //         let x = 1;
+        //         // document.writeln(String(x));
+        //     })(); // IIFE
+        // // oder
+        //     {
+        //         let x = 1;
+        //         // document.writeln(String(x));
+        //     }
+        //
+        // const id = x => x;
+        // const Konst = x => y => x;
+        // // const Kite = x => y => y;
+        // // const Kite = x => y => id(y);
+        // // const Kite = x => id;
+        // // const Kite = x => Konst(id) (x);
+        // const Kite = Konst(id);
+        //
         // test( id(id) === id);
         // test( Konst(id)(undefined) === id);
         // test( Kite(undefined)(id) === id);
+
+        // scoping
+        //     // let x = 0;
+        //     function two() {
+        //         x = 2;
+        //         return x;
+        //     }
+        //     // two();
+        //
+        //     try {
+        //         x;
+        //         document.writeln(true);
+        //     } catch (e) {
+        //         document.writeln(false);
+        //     }
+
+        // IIFE 4P
+        //     let x = 0;
+        //     function two() {
+        //         let x = 2;
+        //         return x;
+        //     }();
+        //
+        //     try {
+        //         document.writeln(x === 0);
+        //     } catch (e) {
+        //         document.writeln(false);
+        //     }
+
+        // Equivalent lambda 5P
+            const id = x => x;
+            const konst = x => y => x;
+
+            const F1 = x => y => konst(id)(x)(y);
+            const F2 = x => konst(id)(x);
+            const F3 = konst(id);
+
+            const x_ = Math.random();
+            const y_ = Math.random();
+            test(F3(x_)(y_) === F2(x_)(y_));
+        // equivalent lambda 5P
+        //     const id  = y => y;
+        //     const fst = x => y => x;
+        //     const snd = fst (id);
+        //
+        //     document.writeln(id(1));
+        //     document.writeln(fst(1)(2));
+        //
+        //     document.writeln(snd(1)(2));
+        //
+        //     const x_ = Math.random();
+        //     const y_ = Math.random();
+        //     document.writeln(snd(x_)(y_) === y_);
 
     </script>
 </body>
