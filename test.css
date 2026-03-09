@@ -1,11 +1,10 @@
-.bar span {
-    margin-right: -.4em;
+.bar {
+    display: flex;
+    flex-wrap: wrap;
+}
+.true, .false {
     padding-inline: 1em;
     color: #fff6;
 }
-.true {
-    background-color: green;
-}
-.false {
-    background-color: red;
-}
+.true  { background-color: green;  }
+.false { background-color: red;   }
