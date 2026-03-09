@@ -1,0 +1,11 @@
+.bar span {
+    margin-right: -.4em;
+    padding-inline: 1em;
+    color: #fff6;
+}
+.true {
+    background-color: green;
+}
+.false {
+    background-color: red;
+}
