@@ -5,33 +5,33 @@ const ok = [];
 
 
 // // id
-// ok.push( id(1) === 1 );
-// ok.push( id(id) === id );
+ok.push( id(1) === 1 );
+ok.push( id(id) === id );
 //
 // // konst
-// ok.push( konst(42)(0) === 42 );
-// ok.push( konst(42)(1) === 42 );
-// ok.push( konst(42)(null) === 42 );
+ok.push( konst(42)(0) === 42 );
+ok.push( konst(42)(1) === 42 );
+ok.push( konst(42)(null) === 42 );
 //
 // // kite
-// ok.push( snd(null)(42) === 42 );
+ok.push( snd(null)(42) === 42 );
 //
 // // true
 //
-// ok.push( T(1)(0) === 1 );
-// ok.push( F(1)(0) === 0 );
+ok.push( T(1)(0) === 1 );
+ok.push( F(1)(0) === 0 );
 //
 // // and
-// ok.push( and(F)(F) === F );
-// ok.push( and(T)(F) === F );
-// ok.push( and(F)(T) === F );
-// ok.push( and(T)(T) === T );
+ok.push( and(F)(F) === F );
+ok.push( and(T)(F) === F );
+ok.push( and(F)(T) === F );
+ok.push( and(T)(T) === T );
 //
 // // or
-// ok.push( or(F)(F) === F );
-// ok.push( or(T)(F) === T );
-// ok.push( or(F)(T) === T );
-// ok.push( or(T)(T) === T );
+ok.push( or(F)(F) === F );
+ok.push( or(T)(F) === T );
+ok.push( or(F)(T) === T );
+ok.push( or(T)(T) === T );
 
 // flip
 // flip(f)(x)(y) = f(y)(x)
@@ -42,9 +42,9 @@ const ok = [];
 //
 // // Pair
 //
-// const dierk = Pair("Dierk")("König"); // immutable
-// ok.push( dierk(firstname) === "Dierk");
-// ok.push( dierk(lastname)  === "König");
+const dierk = Pair("Dierk")("König"); // immutable
+ok.push( dierk(firstname) === "Dierk");
+ok.push( dierk(lastname)  === "König");
 //
 // const tdierk = Triple("Dierk")("König")(50); // immutable
 // ok.push( tdierk(tfirstname) === "Dierk");
@@ -71,16 +71,31 @@ const ok = [];
 //
 
 
-// const safeDiv = num => divisor =>
-//     divisor === 0
-//     ? Left("schlecht!")
-//     : Right(num / divisor);
-//
+
+
+const safeDiv = num => divisor =>
+    divisor === 0
+    ? Left("schlecht!")
+    : Right(num / divisor);
+
+const res = safeDiv(1)(0);
+// either(res)(msg => console.log(msg))(msg => console.log(msg))
+
+const eShow = x => x(id)(id);
+
+const x_ = Math.random();
+
+console.log(safeDiv(1)(0))
+console.log(eShow(safeDiv(1)(0)))
+
+console.log(eShow( safeDiv(1)(0)) === "schlecht!" && eShow(safeDiv(x_)(1)) === x_);
+
 // either( safeDiv(1)(0)  )
 //       ( x => console.error(x))
 //       ( x => console.log(x));
+// wird zu
+// safeDiv(1)(0) ( x => console.error(x)) ( x => console.log(x) );
 
-//
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);
 // const cash = Cash ();
 // const card = CreditCard ("0000-1111-2222-3333");
