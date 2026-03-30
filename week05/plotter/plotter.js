@@ -10,6 +10,14 @@ function start() {
 
     // todo: how to display?
 
+    // display(canvas, x => eval(userFunction.value) );
+    // userFunction.onchange = _evt => {
+    //     display(canvas, x => eval(userFunction.value) );
+    // }
+    display(canvas, Function("x", "return "+userFunction.value) );
+    userFunction.onchange = _evt => {
+        display(canvas, Function("x", "return "+userFunction.value) );
+    }
 }
 
 function display(canvas, f) {
