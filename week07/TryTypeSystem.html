@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /**
+     *
+     * @param { Number | BigInt } arg - any number to be increased
+     * @return { Number }
+     */
+    const foo = arg => {
+        return (Number(arg) +  1);
+    };
+    console.log(foo(1));
+    console.log(foo(1n));
+    console.log(foo("1"));
+
+
+</script>
+
+</body>
+</html>
