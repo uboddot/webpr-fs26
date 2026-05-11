@@ -6,6 +6,44 @@
 <body>
 <script>
 
+    const Iter = (startValue, whileFn, incrementFn) => {
+        const next = () => {
+            const proceed = whileFn(startValue);
+            let   value = undefined;
+            if (proceed) {
+                value = startValue;
+                startValue = incrementFn(startValue);
+            }
+            return { value: value, done: !proceed };
+
+        };
+        return {
+            [Symbol.iterator]: () => ({ next })
+        };
+    };
+    const [...xxx] = Iter(100, x=>x<105, x=>x+2);
+    console.log(xxx);
+
+    const numbers = Iterator.from(Iter(0, _x=>true, x=>x+1));
+    const a = numbers
+        .map(n=>n*2)
+        .drop(10)
+        .take(2)
+        .reduce( (acc,cur)=>acc+cur, 0)
+    ;
+    console.log(a);
+
+    const [n1,n2,n3] = Iter(0, _x=>true, x=>x+1);
+    console.log(n1,n2,n3);
+
+    let counter = 0;
+    for(const i of Iter(42, _x=>true, x=>x+1)) {
+        if(++counter > 10){ break; }
+        console.log(i);
+    }
+
+
+
 </script>
 </body>
 </html>
